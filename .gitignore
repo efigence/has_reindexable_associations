@@ -9,3 +9,4 @@
 /tmp/
 /vendor/bundle
 /db/*.sqlite3
+/*.gem
