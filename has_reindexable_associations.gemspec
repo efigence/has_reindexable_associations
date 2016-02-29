@@ -10,7 +10,7 @@ Gem::Specification.new do |spec|
   spec.email         = ["mkalita@efigence.com"]
 
   spec.summary       = %q{Automatic Elasticsearch Reindexing of Active Record Associations}
-  spec.description   = %q{Keep specified associations in sync with ease using async reindexing (searchkick gem).}
+  spec.description   = %q{Keep specified associations in sync with ease using async reindexing (searchkick gem is required).}
   spec.homepage      = "https://github.com/efigence/has_reindexable_associations"
   spec.license       = "MIT"
 

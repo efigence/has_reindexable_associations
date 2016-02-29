@@ -1,8 +1,5 @@
 # HasReindexableAssociations [![Build Status](https://travis-ci.org/efigence/has_reindexable_associations.svg?branch=master)](https://travis-ci.org/efigence/has_reindexable_associations)
-
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/has_reindexable_associations`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
+Keep specified associations in sync with ease using async reindexing ([searchkick](https://github.com/ankane/searchkick) gem is required).
 
 ## Installation
 
@@ -22,7 +19,31 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+    MyClass < ActiveRecord::Base
+      include HasReindexableAssociations
+
+      belongs_to :some_association
+      has_many :some_associations
+
+      has_reindexable_associations :some_association, :some_associations
+    end
+
+### Handle imports
+
+    # set `reindexable_associations_skip` class attribute to `true` before any seeds or imports to postpone the reindexing of associations
+    MyClass.reindexable_associations_skip = true
+
+    # import data
+    MyClass.import(...)
+
+    # reindex data
+    MyClass.reindex
+
+    # revert the configuration option
+    MyClass.reindexable_associations_skip = false
+
+    # reindex associations after import (repeat for each imported model, eg. MyClass, that has `has_reindexable_associations` configured)
+    MyClass.reindexable_associations.each { |association| MyClass.send(association).model.reindex }
 
 ## Development
 
@@ -32,11 +53,7 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/has_reindexable_associations. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
-
-## TODO
-
-  write README.md
+Bug reports and pull requests are welcome on GitHub at https://github.com/efigence/has_reindexable_associations. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
 
 ## License
 
