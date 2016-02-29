@@ -19,31 +19,35 @@ Or install it yourself as:
 
 ## Usage
 
-    MyClass < ActiveRecord::Base
-      include HasReindexableAssociations
+```ruby
+MyClass < ActiveRecord::Base
+  include HasReindexableAssociations
 
-      belongs_to :some_association
-      has_many :some_associations
+  belongs_to :some_association
+  has_many :some_associations
 
-      has_reindexable_associations :some_association, :some_associations
-    end
+  has_reindexable_associations :some_association, :some_associations
+end
+```
 
 ### Handle imports
 
-    # set `reindexable_associations_skip` class attribute to `true` before any seeds or imports to postpone the reindexing of associations
-    MyClass.reindexable_associations_skip = true
+```ruby
+# set `reindexable_associations_skip` class attribute to `true` before any seeds or imports to postpone the reindexing of associations
+MyClass.reindexable_associations_skip = true
 
-    # import data
-    MyClass.import(...)
+# import data
+MyClass.import(...)
 
-    # reindex data
-    MyClass.reindex
+# reindex data
+MyClass.reindex
 
-    # revert the configuration option
-    MyClass.reindexable_associations_skip = false
+# revert the configuration option
+MyClass.reindexable_associations_skip = false
 
-    # reindex associations after import (repeat for each imported model, eg. MyClass, that has `has_reindexable_associations` configured)
-    MyClass.reindexable_associations.each { |association| MyClass.send(association).model.reindex }
+# reindex associations after import (repeat for each imported model, eg. MyClass, that has `has_reindexable_associations` configured)
+MyClass.reindexable_associations.each { |association| MyClass.send(association).model.reindex }
+```
 
 ## Development
 
