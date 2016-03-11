@@ -1,4 +1,4 @@
-# HasReindexableAssociations [![Build Status](https://travis-ci.org/efigence/has_reindexable_associations.svg?branch=master)](https://travis-ci.org/efigence/has_reindexable_associations)
+# HasReindexableAssociations [![Build Status](https://travis-ci.org/efigence/has_reindexable_associations.svg?branch=master)](https://travis-ci.org/efigence/has_reindexable_associations) [![Coverage Status](https://coveralls.io/repos/github/efigence/has_reindexable_associations/badge.svg?branch=master)](https://coveralls.io/github/efigence/has_reindexable_associations?branch=master)
 Keep specified associations in sync with ease using async reindexing ([searchkick](https://github.com/ankane/searchkick) gem is required).
 
 ## Installation
