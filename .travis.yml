@@ -1,6 +1,18 @@
 language: ruby
 rvm:
   - 2.2.4
-before_install: gem install bundler -v 1.11.2
+sudo: false
+cache: bundler
+# https://docs.travis-ci.com/user/database-setup/
+env:
+  - DB=sqlite
 services:
   - elasticsearch
+before_install: gem install bundler -v 1.11.2
+install:
+  - 'travis_retry bundle install'
+# ElasticSearch takes few seconds to start
+before_script:
+  - sleep 10
+script:
+  - bundle exec rake :test_with_coveralls
