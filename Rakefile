@@ -1,8 +1,5 @@
 require "bundler/gem_tasks"
 require "rake/testtask"
-require 'coveralls/rake/task'
-Coveralls::RakeTask.new
-task :test_with_coveralls => [:test, 'coveralls:push']
 
 Rake::TestTask.new(:test) do |t|
   t.libs << "test"

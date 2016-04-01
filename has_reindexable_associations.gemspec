@@ -48,4 +48,5 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "minitest", "~> 5.0"
   spec.add_development_dependency "coveralls", "~> 0.8.13"
   spec.add_development_dependency "simplecov", "~> 0.11.2"
+  spec.add_development_dependency "codeclimate-test-reporter", "~> 0.5.0"
 end

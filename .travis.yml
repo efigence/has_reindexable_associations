@@ -15,4 +15,4 @@ install:
 before_script:
   - sleep 10
 script:
-  - bundle exec rake test_with_coveralls
+  - bundle exec rake test
