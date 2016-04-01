@@ -1,4 +1,4 @@
-require "has_reindexable_associations/version"
+require 'has_reindexable_associations/version'
 require 'rails/all'
 require 'searchkick'
 
@@ -27,12 +27,12 @@ module HasReindexableAssociations
     def has_reindexable_associations(*args)
       # @@ is shared between classes via concern, not what we want
       # @@reindexable_associations = args
-      self.class_variable_set :@@reindexable_associations, args
+      class_variable_set :@@reindexable_associations, args
     end
 
     def reindexable_associations
       # @@reindexable_associations || []
-      self.class_variable_get :@@reindexable_associations
+      class_variable_get :@@reindexable_associations
     rescue NameError
       []
     end
@@ -59,11 +59,9 @@ module HasReindexableAssociations
     end
 
     def reindex_associations_scope(reindexable_association)
-      begin
-        record_or_records = self.send(reindexable_association)
-      rescue NoMethodError
-        fail NoMethodError.new("foreign key '#{reindexable_association}' is not defined, verify has_reindexable_associations options")
-      end
+      send(reindexable_association) # record_or_records
+    rescue NoMethodError
+      raise NoMethodError.new("foreign key '#{reindexable_association}' is not defined, verify has_reindexable_associations options")
     end
 
     def reindex_associations_process_records(records, reindexable_association)
@@ -87,7 +85,7 @@ module HasReindexableAssociations
       key, type = reindex_associations_describe_polymorphic_association(reindexable_association)
       old_klass = reindex_associations_describe_old_polymorphic_association(key, type)
       return unless old_klass && previous_changes[key] && previous_changes[key].first
-      old_record = old_klass.where(id: previous_changes[key].first).first
+      old_klass.where(id: previous_changes[key].first).first # old_record
     end
 
     def reindex_associations_process_old_record(reindexable_association)
@@ -104,10 +102,9 @@ module HasReindexableAssociations
     def reindex_associations_describe_old_polymorphic_association(key, type)
       if (previous_changes[key] && previous_changes[key].first) || (previous_changes[type] && previous_changes[type].first)
         old_klass = previous_changes[type].first rescue NameError
-        old_klass = self.send(type).constantize if old_klass == NameError
+        send(type).constantize if old_klass == NameError # old_klass
       end
     rescue NameError
     end
   end
 end
-
