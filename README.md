@@ -1,4 +1,4 @@
-# HasReindexableAssociations [![Build Status](https://travis-ci.org/efigence/has_reindexable_associations.png?branch=master)](https://travis-ci.org/efigence/has_reindexable_associations) [![Coverage Status](https://coveralls.io/repos/github/efigence/has_reindexable_associations/badge.png?branch=master)](https://coveralls.io/github/efigence/has_reindexable_associations?branch=master)
+# HasReindexableAssociations [![Build Status](https://travis-ci.org/efigence/has_reindexable_associations.png?branch=master)](https://travis-ci.org/efigence/has_reindexable_associations) [![Coverage Status](https://coveralls.io/repos/github/efigence/has_reindexable_associations/badge.png?branch=master)](https://coveralls.io/github/efigence/has_reindexable_associations?branch=master) [![Code Climate](https://codeclimate.com/github/efigence/has_reindexable_associations/badges/gpa.svg)](https://codeclimate.com/github/efigence/has_reindexable_associations)
 Keep specified associations in sync with ease using async reindexing ([searchkick](https://github.com/ankane/searchkick) gem is required).
 
 ## Installation
@@ -62,4 +62,3 @@ Bug reports and pull requests are welcome on GitHub at https://github.com/efigen
 ## License
 
 The gem is available as open source under the terms of the [MIT License](http://opensource.org/licenses/MIT).
-
